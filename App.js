@@ -9,6 +9,7 @@ import {
   Image,
 } from "react-native";
 import Coin from "./components/Coin";
+import { SAMPLE_DATA } from "./assets/data/sampleData";
 
 import React, { useState, useEffect } from "react";
 import { getMarketData } from "/Users/affaankidwai/Desktop/stock-crypto/services/cryptodata.jsx";
@@ -16,7 +17,7 @@ import MidBar from "./components/MidBar";
 
 export default function App() {
   const [data, setData] = useState([]);
-  //   const [selectedCoinData, setSelectedCoinData] = useState(null);
+  const [selectedCoinData, setSelectedCoinData] = useState(null);
 
   useEffect(() => {
     const fetchMarketData = async () => {
@@ -39,6 +40,8 @@ export default function App() {
           </Text>
         </View>
         <View>
+          <TouchableOpacity
+          onPress={() => console.log("you pressed a text")}>
           <Image
             source={{
               uri: "https://media-exp1.licdn.com/dms/image/C4D03AQF84Vo3s7IUYg/profile-displayphoto-shrink_400_400/0/1654702185650?e=1673481600&v=beta&t=p3fxdj68eI2HIp8QCw3TgDLzXXTkm-vX5KILZlno41E",
@@ -50,15 +53,32 @@ export default function App() {
               marginTop: "23%",
               marginRight: "6%",
             }}
+            
           />
+          </TouchableOpacity>
         </View>
         {/* <StatusBar style="auto" /> */}
         {/* <Switch /> */}
       </View>
       <MidBar />
       <View style={styles.divider} />
-      <Coin />
+      <FlatList
+      keyExtractor={(item) => item.id}
+      data={SAMPLE_DATA}
+      renderItem={({item}) => (
+        <Coin 
+        name={item.name}
+        symbol={item.symbol}
+        currentPrice={item.current_price}
+        priceChangePercentage7d={item.price_change_percentage_7d_in_currency}
+        logoUrl={item.image}
+
+        
+        />
+
+      )}
       
+      />
     </SafeAreaView>
   );
 }

@@ -1,26 +1,34 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
 
-const Coin = () => {
+const Coin = ({
+  name,
+  symbol,
+  currentPrice,
+  priceChangePercentage7d,
+  logoUrl,
+}) => {
+  const priceChangeColor = priceChangePercentage7d > 0 ? "#42E56B" : "#FF2F2F";
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={console.log("hello")}>
       <View style={styles.coinInfo}>
+        {/* Left side */}
         <View style={styles.left}>
-          {/* <Image
-          style={{width: 50, height: 50}}
-            source={{
-              uri: "https://img.freepik.com/premium-vector/gold-coin-bitcoin-bitcoin-cryptocurrency-symbol-isolated-transparent-background_279501-2310.jpg?w=20",
-            }}
-          /> */}
-          <View>
-            <Text>Bitcoin</Text>
-            <Text>BTC</Text>
+          <Image source={{ uri: logoUrl }} style={styles.image} />
+          <View style={styles.titlesWrapper}>
+            <Text style={styles.title}>{name}</Text>
+            <Text style={styles.subtitle}>{symbol.toUpperCase()}</Text>
           </View>
         </View>
 
+        {/* Right side */}
         <View style={styles.right}>
-          <Text>34,545</Text>
-          <Text>+9.7%</Text>
+          <Text style={styles.price}>
+            ${currentPrice.toLocaleString("en-US", { currency: "USD" })}
+          </Text>
+          <Text style={[styles.percentage, { color: priceChangeColor }]}>
+            {priceChangePercentage7d.toFixed(2)}%
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -40,8 +48,14 @@ const styles = StyleSheet.create({
     marginTop: 15,
     height: 70,
   },
-  left: {},
-  right: {},
+  left: {flexDirection: 'row', alignItems: "center"},
+  right: {marginRight: 7},
+  title: {fontSize: 18, fontWeight: 'bold'},
+  price:{fontSize: 16, textAlign: 'right'},
+  titlesWrapper: {marginLeft: 7},
+  subtitle: {fontSize: 12},
+  percentage: {fontSize: 12, textAlign: 'right'},
+  image: { width: 30, height: 30, marginLeft: 7 },
 });
 
 // import {
