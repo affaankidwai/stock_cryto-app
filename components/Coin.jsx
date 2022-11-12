@@ -6,11 +6,12 @@ const Coin = () => {
     <TouchableOpacity>
       <View style={styles.coinInfo}>
         <View style={styles.left}>
-          <Image
+          {/* <Image
+          style={{width: 50, height: 50}}
             source={{
               uri: "https://img.freepik.com/premium-vector/gold-coin-bitcoin-bitcoin-cryptocurrency-symbol-isolated-transparent-background_279501-2310.jpg?w=20",
             }}
-          />
+          /> */}
           <View>
             <Text>Bitcoin</Text>
             <Text>BTC</Text>
@@ -18,8 +19,8 @@ const Coin = () => {
         </View>
 
         <View style={styles.right}>
-          <Text>Bitcoin</Text>
-          <Text>BTC</Text>
+          <Text>34,545</Text>
+          <Text>+9.7%</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -33,11 +34,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "E7E7E7",
-    borderRadius: "10px",
-    marginHorizontal: "4%",
+    backgroundColor: "#ECEAEA",
+    borderRadius: 10,
+    marginHorizontal: 6,
     marginTop: 15,
-    height: 60,
+    height: 70,
   },
   left: {},
   right: {},

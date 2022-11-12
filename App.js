@@ -12,6 +12,7 @@ import Coin from "./components/Coin";
 
 import React, { useState, useEffect } from "react";
 import { getMarketData } from "/Users/affaankidwai/Desktop/stock-crypto/services/cryptodata.jsx";
+import MidBar from "./components/MidBar";
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -28,45 +29,36 @@ export default function App() {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.topText}>
-        <Text style={{ color: "#888", fontSize: 20, paddingBottom: "2%" }}>
-          Welcome Back!
-        </Text>
-        <Text style={{ color: `#487d8b`, fontSize: 28, marginBottom: "10%" }}>
-          Affaan Kidwai
-        </Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 30 }}>
+        <View style={[styles.topText, { flexDirection: "column" }]}>
+          <Text style={{ color: "#888", fontSize: 20, paddingBottom: "2%" }}>
+            Welcome Back! 👋
+          </Text>
+          <Text style={{ color: `#1881FD`, fontSize: 28, marginBottom: "10%" }}>
+            Affaan Kidwai
+          </Text>
+        </View>
+        <View>
+          <Image
+            source={{
+              uri: "https://media-exp1.licdn.com/dms/image/C4D03AQF84Vo3s7IUYg/profile-displayphoto-shrink_400_400/0/1654702185650?e=1673481600&v=beta&t=p3fxdj68eI2HIp8QCw3TgDLzXXTkm-vX5KILZlno41E",
+            }}
+            style={{
+              width: 120,
+              height: 120,
+              borderRadius: 60,
+              marginTop: "23%",
+              marginRight: "6%",
+            }}
+          />
+        </View>
         {/* <StatusBar style="auto" /> */}
         {/* <Switch /> */}
       </View>
-
-      {/* <View style={{ flex: 1, flexDirection: "row" }}>
-        <TouchableOpacity
-          style={styles.midBar}
-          onPress={() => console.log("you pressed a text")}
-        >
-          <Text>Trending</Text>
-        </TouchableOpacity>
-        <Text
-          style={styles.midBar}
-          onPress={() => console.log("you pressed a text")}
-        >
-          Top Stocks
-        </Text>
-        <Text
-          style={styles.midBar}
-          onPress={() => console.log("you pressed a text")}
-        >
-          Top Crypto
-        </Text>
-        <Text
-          style={styles.midBar}
-          onPress={() => console.log("you pressed a text")}
-        >
-          Wishlist
-        </Text>
-      </View> */}
+      <MidBar />
       <View style={styles.divider} />
       <Coin />
+      
     </SafeAreaView>
   );
 }
@@ -74,17 +66,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "flex-start",
-    // justifyContent: "flex-start",
-  },
+    backgroundColor: "#fff",},
   topText: {
-    paddingTop: "20%",
+    paddingTop: "16%",
     paddingLeft: "6%",
-  },
-  midBar: {
-    padding: "3%",
-    fontSize: 19,
   },
   left: {},
   right: {},
